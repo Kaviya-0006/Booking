@@ -14,10 +14,9 @@ spec:
     spec:
       containers:
       - name: hotel-container
-        # REMEMBER: Change 'your-dockerhub-username' to your actual username
-        image: kaviya0006/hotel-app:latest 
+        image: kaviya63690/hotel-app:latest 
         ports:
-        - containerPort: 9090 # Changed from 8080
+        - containerPort: 8081  # Updated port
 ---
 apiVersion: v1
 kind: Service
@@ -26,7 +25,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 80           # This is the external port you will visit in your browser
-    targetPort: 9090   # This must match the containerPort above
+  - port: 80           # You can still use http://localhost:80 in your browser
+    targetPort: 8081   # Now correctly routes to the new port 8081
   selector:
     app: hotel-app
